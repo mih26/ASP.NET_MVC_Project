@@ -1,0 +1,57 @@
+﻿@model IEnumerable<EM.Models.Skill>
+@{
+    ViewBag.Title = "Index";
+}
+<div class="row">
+    <div class="col-12">
+        <h3>Skills</h3>
+        <div class="d-flex justify-content-end mb-1">
+            @Html.ActionLink("Create New", "Create", "Skill", new { }, new { @class = "btn btn-primary btn-sm" })
+        </div>
+        <table class="table table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th>Employee</th>
+                    <th>Course</th>
+                    <th>Institute</th>
+                    <th>Passing Year</th>
+                    <th>Result</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var q in Model)
+                {
+                    <tr id="tr_@q.SkillId">
+                        <td>@q.Employee.EmployeeName</td>
+                        <td>@q.Degree</td>
+                        <td>@q.Institute</td>
+                        <td>@q.PassingYear</td>
+                        <td>@q.Result</td>
+                        <th>
+                            @Html.ActionLink("Edit", "Edit", "Skill", new { @id = q.SkillId }, new { @class = "btn btn-primary btn-sm" })
+                            @Ajax.ActionLink("Delete", "Delete", "Skill",
+                           new { id = q.SkillId },
+                           new AjaxOptions { HttpMethod = "Post", OnBegin = "onBegin", OnSuccess = "onSuccess" },
+                           new { @class = "btn btn-danger btn-sm del" })
+                        </th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section scripts {
+    <script src="~/Scripts/jquery-3.6.3.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script>
+        function onSuccess(r) {
+            $("#tr_" + r.id).remove();
+        }
+        function onBegin(ev) {
+            if (!confirm("Are you sure to delete?")) ev.preventDefault();
+        }
+    </script>
+}
+
+

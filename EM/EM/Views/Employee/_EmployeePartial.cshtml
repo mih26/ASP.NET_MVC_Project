@@ -1,0 +1,33 @@
+﻿@model IEnumerable<EM.Models.Employee>
+<table class="table table-bordered">
+    <thead class="table-warning">
+        <tr>
+            <th></th>
+            <th>Employee name</th>
+            <th>Working Date</th>
+            <th>Work Category</th>
+            <th>Work Rate</th>
+            <th>Work from home?</th>
+            <th>...</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr id="tr_@c.EmployeeId">
+                <td><img src="~/Pictures/@c.Picture" class="rounded-circle" style="width:40px" /></td>
+                <td>@c.EmployeeName</td>
+                <td>@c.EmployeeDate.ToString("yyyy-MM-dd")</td>
+                <td>@c.EmployeeCategory</td>
+                <td>@c.EmployeeRate.ToString("0.00")</td>
+                <td>@(c.WorkFromHome.Value ? "Yes": "No")</td>
+                <td>
+                       @Html.ActionLink("Edit", "Edit", "Employee", new {id=c.EmployeeId}, new {@class="btn btn-success"})
+
+                    @Ajax.ActionLink("Delete", "Delete", "Employee", new { id = c.EmployeeId }, new AjaxOptions { HttpMethod = "Post", OnBegin = "onBegin", OnSuccess = "onSuccess" }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,21 @@
+﻿CREATE TABLE Employees
+(
+	EmployeeId INT IDENTITY PRIMARY KEY,
+	EmployeeName NVARCHAR(40) NOT NULL,
+	EmployeeDate DATE NOT NULL,
+	EmployeeCategory NVARCHAR(30) NOT NULL,
+	EmployeeRate MONEY NOT NULL,
+	WorkFromHome BIT,
+	Picture NVARCHAR(30) NOT NULL
+)
+GO
+CREATE TABLE Skills
+(
+	SkillId INT IDENTITY PRIMARY KEY,
+	Degree NVARCHAR(30) NOT NULL,
+	PassingYear INT NOT NULL,
+	Institute NVARCHAR(50) NOT NULL,
+	Result NVARCHAR(20) NOT NULL,
+	EmployeeId INT NOT NULL REFERENCES Employees(EmployeeId)
+)
+GO
