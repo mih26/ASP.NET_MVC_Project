@@ -1,0 +1,11 @@
+ASP.NET MVC5 Project - Data First (Employee Management)
+
+An Employee management ASP.NET MVC5 Project of Employees and their Skill information in Master Detail crud (Insert, Edit, Delete) and Authentication with two crystal Report - Data First
+
+The following technologies are used:
+ MS-SQL Server 2019
+ ASP.NET MVC5
+ Entity Framework
+ Bootstrap 5
+ Ajax
+ jQuery
